@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="MassTransit" Version="4.0.0.1286-develop" />
+    <PackageReference Include="MassTransit.Automatonymous" Version="4.0.0.1286-develop" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="4.0.0.1286-develop" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="4.0.0.1278-develop" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="NLog" Version="5.0.0-beta10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Order.Saga\Order.Saga.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Logging.Core">
+      <HintPath>..\..\..\..\shared\Logging\Logging.Core\bin\Debug\netcoreapp2.0\Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Logging.Model">
+      <HintPath>..\..\..\..\shared\Logging\Logging.Core\bin\Debug\netcoreapp2.0\Logging.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Order.Contracts">
+      <HintPath>..\..\..\..\shared\Order.Contracts\Order.Contracts\Order.Contracts\bin\Debug\netcoreapp2.0\Order.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Payment.Contracts">
+      <HintPath>..\..\..\..\shared\Payment.Contracts\Payment.Contracts\bin\Debug\netcoreapp2.0\Payment.Contracts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

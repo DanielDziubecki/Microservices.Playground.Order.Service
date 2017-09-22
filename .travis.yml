@@ -1,8 +1,7 @@
 language: csharp
-dist: trusty
 mono: none
-dotnet: 2.0
-install:
-- dotnet restore
+dotnet: 2.0.0
 script:
-- dotnet build
+  - dotnet restore
+  - dotnet build ./Order.Service/
+  - dotnet build ./Order.Saga/

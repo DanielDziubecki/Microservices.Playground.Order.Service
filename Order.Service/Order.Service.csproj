@@ -33,10 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Order.Saga\Order.Saga.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Logging.Core">
       <HintPath>..\..\..\..\shared\Logging\Logging.Core\bin\Debug\netcoreapp2.0\Logging.Core.dll</HintPath>
     </Reference>
@@ -45,6 +41,9 @@
     </Reference>
     <Reference Include="Order.Contracts">
       <HintPath>..\..\..\..\shared\Order.Contracts\Order.Contracts\Order.Contracts\bin\Debug\netcoreapp2.0\Order.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Order.Saga">
+      <HintPath>..\..\Order.Saga\bin\Debug\netcoreapp2.0\Order.Saga.dll</HintPath>
     </Reference>
     <Reference Include="Payment.Contracts">
       <HintPath>..\..\..\..\shared\Payment.Contracts\Payment.Contracts\bin\Debug\netcoreapp2.0\Payment.Contracts.dll</HintPath>

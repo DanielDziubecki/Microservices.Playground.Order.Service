@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Automatonymous;

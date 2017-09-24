@@ -3,7 +3,4 @@ mono: none
 dotnet: 2.0.0
 script:
   - dotnet restore
-  - dotnet build ./Order.Service/
-  - dotnet build ./Order.Saga/
-  - dotnet build ./Shared.Order.Contracts/
-  - dotnet build ./Shared.Payment.Contracts/
+  - dotnet build ./Order.Service.sln

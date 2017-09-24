@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Logging.Model;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Order.Contracts.Events;
+using Order.Contracts;
+using Order.Service.Common;
 using Order.Service.DTO;
 using Order.Service.Repository;
 

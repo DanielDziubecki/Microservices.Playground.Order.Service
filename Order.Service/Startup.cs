@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Automatonymous;
-using Logging.Core.Autofac;
 using MassTransit;
 using MassTransit.EntityFrameworkCoreIntegration;
 using MassTransit.EntityFrameworkCoreIntegration.Saga;
@@ -33,13 +32,13 @@ namespace Order.Service
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        //  This method gets called by the runtime.Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
+            //  Add framework services.
             services.AddMvc();
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new LoggingModule());
+            // builder.RegisterModule(new LoggingModule());
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
 
             builder.Register(context =>
@@ -55,13 +54,13 @@ namespace Order.Service
 
                     var busControl = Bus.Factory.CreateUsingRabbitMq(rabbitMqConfig =>
                     {
-                        var host = rabbitMqConfig.Host(new Uri("rabbitmq://localhost/#/queues/%2F/order_state"), h =>
+                        var host = rabbitMqConfig.Host(new Uri("rabbitmq://localhost/"), h =>
                         {
                             h.Username("guest");
                             h.Password("guest");
                         });
 
-                        rabbitMqConfig.ReceiveEndpoint(host, "order_state",
+                        rabbitMqConfig.ReceiveEndpoint(host, "order_saga",
                             e =>
                             {
                                 e.StateMachineSaga(orderSaga,
@@ -87,17 +86,17 @@ namespace Order.Service
             var applicationContainer = builder.Build();
 
             var bus = applicationContainer.Resolve<IBusControl>();
-            var recieveObs = applicationContainer.Resolve<IReceiveObserver>();
-            var publishObs = applicationContainer.Resolve<IPublishObserver>();
+            //   var recieveObs = applicationContainer.Resolve<IReceiveObserver>();
+            //   var publishObs = applicationContainer.Resolve<IPublishObserver>();
 
-           // bus.ConnectReceiveObserver(recieveObs);
-            //bus.ConnectPublishObserver(publishObs);
+            //  bus.ConnectReceiveObserver(recieveObs);
+            //  bus.ConnectPublishObserver(publishObs);
             bus.Start();
             return new AutofacServiceProvider(applicationContainer);
         }
 
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //  This method gets called by the runtime.Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Automatonymous" Version="4.0.0.1288-develop" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="4.0.0.1288-develop" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Order.Contracts\Shared.Order.Contracts.csproj" />
+    <ProjectReference Include="..\Shared.Payment.Contracts\Shared.Payment.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,1 @@
+dotnet publish ./src/Order.Service -c Release -o ./bin/Docker

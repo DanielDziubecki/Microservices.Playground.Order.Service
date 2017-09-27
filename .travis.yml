@@ -4,3 +4,9 @@ dotnet: 2.0.0
 script:
   - dotnet restore
   - dotnet build ./Order.Service.sln
+after_success:
+  - ./publish/travis_on_success.sh
+notifications:
+  email:
+    on_success: never
+    on_failure: always

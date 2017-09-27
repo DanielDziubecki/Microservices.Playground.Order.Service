@@ -1,6 +1,5 @@
 #!/bin/bash
-echo Executing after success scripts on branch $TRAVIS_BRANCH
 echo Publishing application
-./scripts/publish.sh
+./publish/publish.sh
 echo Building and pushing Docker images
-./scripts/dockerhub-publish.sh
+./publish/dockerhub-publish.sh

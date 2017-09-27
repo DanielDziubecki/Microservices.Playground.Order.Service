@@ -1,6 +1,9 @@
 language: csharp
 mono: none
 dotnet: 2.0.0
+sudo: required
+services:
+  - docker
 before_script:
   - chmod -R a+x publish
 script:

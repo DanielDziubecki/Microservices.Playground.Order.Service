@@ -38,7 +38,6 @@ namespace Order.Service
             //  Add framework services.
             services.AddMvc();
             var builder = new ContainerBuilder();
-            // builder.RegisterModule(new LoggingModule());
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
 
             builder.Register(context =>
@@ -83,16 +82,17 @@ namespace Order.Service
 
             builder.Populate(services);
 
-            var applicationContainer = builder.Build();
-
-            var bus = applicationContainer.Resolve<IBusControl>();
+            var appContainer = builder.Build();
+            var bus = appContainer.Resolve<IBusControl>();
             //   var recieveObs = applicationContainer.Resolve<IReceiveObserver>();
             //   var publishObs = applicationContainer.Resolve<IPublishObserver>();
 
             //  bus.ConnectReceiveObserver(recieveObs);
             //  bus.ConnectPublishObserver(publishObs);
             bus.Start();
-            return new AutofacServiceProvider(applicationContainer);
+
+
+            return new AutofacServiceProvider(appContainer);
         }
 
 

@@ -26,8 +26,7 @@ namespace Order.Saga
                     .Then(context =>
                     {
                         context.Instance.OrderId = context.Data.OrderId;
-                        ConsumeContext<IOrderCreated> consumeContext;
-                        if (context.TryGetPayload(out consumeContext))
+                        if (context.TryGetPayload(out ConsumeContext<IOrderCreated> consumeContext))
                         {
                             var opId = consumeContext.Headers.Get("operationId", "");
                             if (!string.IsNullOrEmpty(opId))

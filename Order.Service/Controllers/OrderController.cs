@@ -29,29 +29,21 @@ namespace Order.Service.Controllers
 
         [Route("api/order")]
         [HttpPost]
-        public async Task<IActionResult> Post(OrderDto dto)
+        public async Task<IActionResult> Post(OrderDto dto, [FromHeader(Name = "operationid")] string operationId)
         {
+            if (!Guid.TryParse(operationId, out Guid operation))
+                return BadRequest("Operation id should be Guid type.");
+
             orderRepository.AddOrder(dto);
 
-            var value = Request.Headers[LogConstansts.Common.OperationId];
-            var operationId = Guid.Parse(value).ToString();
-            try
+            await busControl.Publish<IOrderCreated>(new
             {
-                await busControl.Publish<IOrderCreated>(new
-                {
-                    OrderId = dto.Id
-                }, context =>
-                {
-                    context.Headers.Set(LogConstansts.Common.OperationId,
-                        operationId);
-                    context.Headers.Set(LogConstansts.QueueMessageHeaderNames.Publisher, Request.Path.Value);
-                });
-            }
-            catch (Exception e)
+                OrderId = dto.Id
+            }, context =>
             {
-                Console.WriteLine(e);
-                throw;
-            }
+                context.Headers.Set(LogConstansts.Common.OperationId, operation.ToString());
+                context.Headers.Set(LogConstansts.QueueMessageHeaderNames.Publisher, Request.Path.Value);
+            });
 
             return Ok(dto);
         }

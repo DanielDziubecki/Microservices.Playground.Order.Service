@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Order.Contracts;
 using Order.Service.Common;
 using Order.Service.DTO;
 using Order.Service.Repository;
+using Shared.Order.Contracts;
 
 namespace Order.Service.Controllers
 {
@@ -29,7 +29,7 @@ namespace Order.Service.Controllers
 
         [Route("api/order")]
         [HttpPost]
-        public async Task<IActionResult> Post(OrderDto dto, [FromHeader(Name = "operationid")] string operationId)
+        public async Task<IActionResult> Post([FromBody]OrderDto dto, [FromHeader(Name = "operationid")] string operationId)
         {
             if (!Guid.TryParse(operationId, out Guid operation))
                 return BadRequest("Operation id should be Guid type.");

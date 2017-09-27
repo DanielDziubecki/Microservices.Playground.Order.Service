@@ -1,6 +1,6 @@
 using System;
 
-namespace Order.Contracts
+namespace Shared.Order.Contracts
 {
     public interface IOrderCreated
     {

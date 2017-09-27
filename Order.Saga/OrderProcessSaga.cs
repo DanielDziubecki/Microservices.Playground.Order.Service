@@ -1,12 +1,10 @@
 ﻿using Automatonymous;
 using MassTransit;
-using Order.Contracts;
 using Shared.Payment.Contracts;
 using Shared.Order.Contracts;
-
-
 namespace Order.Saga
 {
+    //todo: should be hosted somewhere else. For sure not in service
     public class OrderProcessSaga : MassTransitStateMachine<OrderState>
     {
         private string OperationId { get; set; }

@@ -18,10 +18,9 @@ namespace Order.Service.Integration.Tests
             var webHostBuilder = new WebHostBuilder()
                 .UseEnvironment("Test")
                 .UseStartup<TestStartup>();
-            
+
             Server = new TestServer(webHostBuilder);
             Client = Server.CreateClient();
-        
         }
 
         public void Dispose()
@@ -39,9 +38,9 @@ namespace Order.Service.Integration.Tests
 
             public IServiceProvider ConfigureTestServices(IServiceCollection services)
             {
-                var container = new ContainerBuilder();
-               //configure test infrastructure here
-                return new AutofacServiceProvider(container.Build());
+                //configure test infrastructure here insead of call base configure method
+                var baseservices = base.ConfigureServices(services);
+                return baseservices;
             }
         }
     }

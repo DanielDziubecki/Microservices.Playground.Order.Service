@@ -2,7 +2,7 @@ language: csharp
 mono: none
 dotnet: 2.0.0
 before_script:
-  - chmod -R a+x scripts
+  - chmod -R a+x publish
 script:
   - dotnet restore
   - dotnet build ./Order.Service.sln

@@ -13,6 +13,6 @@ case "$TRAVIS_BRANCH" in
 esac
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-docker build -f ./src/order.service/Dockerfile.$DOCKER_ENV -t order.service:$DOCKER_TAG ./src/order.service
+docker build -f ./src/Order.Service/Dockerfile.$DOCKER_ENV -t order.service:$DOCKER_TAG ./src/Order.Service
 docker tag order.service:$DOCKER_TAG $DOCKER_USERNAME/order.service:$DOCKER_TAG
 docker push $DOCKER_USERNAME/order.service:$DOCKER_TAG

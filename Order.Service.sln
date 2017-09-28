@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FE174440-CD55-4B80-A2E4-279B18389130}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish", "publish", "{2FEDB8B8-13D8-4496-863A-507E913B3C0A}"
+	ProjectSection(SolutionItems) = preProject
+		publish\dockerhub-publish.sh = publish\dockerhub-publish.sh
+		publish\publish.sh = publish\publish.sh
+		publish\travis_on_success.sh = publish\travis_on_success.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8AAB887B-F4FB-4D1B-96A1-2A52A471CB5D}"
 EndProject

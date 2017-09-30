@@ -43,20 +43,19 @@ namespace Order.Service
             builder.Register(context =>
                 {
                     var orderSaga = new OrderProcessSaga();
-
                     var dbContextOptionsBuilder =
                         new DbContextOptionsBuilder<SagaDbContext<OrderState, OrderSagaMap>>();
                     dbContextOptionsBuilder.UseSqlServer(
                         new SqlConnection(
-                            @"Server=DESKTOP-J45OU76\SQLEXPRESS;Database=Orders;Integrated Security=True"),
+                            Environment.GetEnvironmentVariable("test_db_con_string")),
                         optionsBuilder => { });
 
                     var busControl = Bus.Factory.CreateUsingRabbitMq(rabbitMqConfig =>
                     {
-                        var host = rabbitMqConfig.Host(new Uri("rabbitmq://localhost/"), h =>
+                        var host = rabbitMqConfig.Host(new Uri("rabbitmq://192.168.0.105/"), h =>
                         {
-                            h.Username("guest");
-                            h.Password("guest");
+                            h.Username(Environment.GetEnvironmentVariable("rabbitmq_login"));
+                            h.Password(Environment.GetEnvironmentVariable("rabbitmq_pass"));
                         });
 
                         rabbitMqConfig.ReceiveEndpoint(host, "order_saga",
